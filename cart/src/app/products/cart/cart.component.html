@@ -1,0 +1,80 @@
+<!--Empty cart-->
+
+<div class="container">
+    <div class="row" >
+        <div class="col text-center">
+            <div class="container"*ngIf="cartitem.length==0">
+            <img height="500px" src="https://cdn.dribbble.com/users/2046015/screenshots/4591856/first_white_girl_drbl.gif" alt="">
+            <h1 class="text-center " >Your cart is empty!</h1>
+            <button class=" btn btn-warning mb-5" routerLink="/">Shop now</button></div>
+            <table class="border border-3 border-dark text-center container mt-5" *ngIf="cartitem.length!=0">
+                <thead class="border mt-5">
+                    <tr class="border text-center mt-5">
+                        <th class="border">Number</th>
+                        <th class="border">Name</th>
+                        <th class="border">Image</th>
+                        <th class="border">Discription</th>
+                        <th class="border">Price</th>
+                        <th class="border">Action</th>
+                    </tr>
+                    <tr *ngFor="let product of cartitem, let i =index" >
+                        <th class="border">{{1+i}}</th>
+                        <td class="border">{{product.title}}</td>
+                        <td class="border"><img [src]=product.image alt=""width="100px"></td>
+                        <td class="border">{{product.description}}</td>
+                        <td class="border">{{product.price}}</td>
+                        <td><i (click)="removecart(product)" class="fa-sharp fa-solid fa-trash text-danger"></i></td>
+                    </tr>
+                    
+                </thead>
+            </table>
+            <div class="container p-5">
+            <button class="btn btn-warning mx-3" (click)="removeall()">Empty cart</button>
+            <button class="btn btn-warning mx-3" routerLink="">Shop more</button>
+            <button class="btn btn-warning mx-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">Check out</button>
+            <b>Grand total:{{grand}}</b>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Check Out Page</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Delivery Address</h1>
+          <form action="">
+            <input type="text" placeholder="Enter your name" class="form-control mb-2">
+            <input type="text" placeholder="House no." class="form-control  mb-2">
+            <input type="text" placeholder="pin code:" class="form-control  mb-2">
+            <input type="text" placeholder="street" class="form-control  mb-2">
+            <input type="text" placeholder="state" class="form-control  mb-2">
+            <input type="text" placeholder="Phone no." class="form-control  mb-2">
+          </form>
+          <div>
+            <h1>Discount</h1>
+            <div ngSwitch="grand">
+            <img (click)="discount5per()"  *ngSwitchCase="5" src="https://www.shutterstock.com/image-vector/promo-code-coupon-label-design-260nw-1798419094.jpg" alt=""  width="100px">
+            <img (click)="discount30per()" *ngSwitchCase="30" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7gMl6fkl8arSkSPnwo1qKGFGJlgsNz0_Ilw&usqp=CAU" alt="" width="100px">
+            <img (click)="discount20per()" *ngSwitchCase="20" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1t3O83StmJEAQEKtRMmTWnEGo5oI5lvx35A&usqp=CAU" alt="" height="100px" width="100px">
+            <img (click)="discount50per()" *ngSwitchDefault="50" width="100px" height="100px" src="data:image/png;base64,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" alt="">
+             </div>
+             <div>
+                <b>Your grand total:{{updatedgrand}}</b>
+             </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-warning" (click)="proceed()">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>

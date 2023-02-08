@@ -1,0 +1,41 @@
+SERVER CREATION
+
+creating package.json - npm init
+
+create nodemodules - install express - npm i express
+
+create index.js(main entry point)
+  - in index.js
+    1)import express
+    2)create an appication using express
+    3)setup a port number
+    4)use jsonparse for server response
+
+integration - 
+   1)install cors - npm i cors
+   2)import cors into index.js
+   3)using cors specify the  origin to the server
+
+services -
+create a folder Services - also find 2 files
+    1)dataServices.js
+    2)db.js
+
+mondodb connection 
+     1)install mongoose - npm i mongoose
+     2)import mongoose into db.js
+     3)define the connection string
+     4)create model for products and export it
+
+resoving API calls in index.js
+       1)import dataSERVICES
+
+create logic in dataservice
+    1)import DB
+    2)define function
+
+final step define api call in index.js
+
+
+
+
